@@ -14,11 +14,18 @@
     <script type="text/babel">
 
       function ChatInput() {
+        const [inputText, setInputText] = React.useState('');
+
+        function saveInputText(event) {
+          setInputText(event.target.value);
+        }
+        
         return (
           <>
             <input 
               placeholder="Send a message to chatbot" 
               size="30"
+              onChange={saveInputText}
             />
             <button>send</button>
           </>
@@ -46,26 +53,57 @@
         );
       }
 
+      function ChatMessages() {
+        const [chatMessages, setChatMessages] = React.useState([{
+          message: 'hello chatbot',
+          sender: 'user',
+          id: 'id1'
+        }, {
+          message: 'Hello! How can I help you?',
+          sender: 'robot',
+          id: 'id2'
+        }, {
+          message: "Can you get me todays' date",
+          sender: "user",
+          id: 'id3'
+        }, {
+          message: "Today is July 9",
+          sender: "robot",
+          id: 'id4'
+        }]);
+
+        function sendMessage() {
+          const newMessage = {
+            message: 'test',
+            sender: 'user',
+            id: crypto.randomUUID()
+          };
+          
+          //Creates a new updated state with the new added message.
+          setChatMessages([...chatMessages, newMessage]);
+        }
+
+        return (
+          <>
+            <button onClick={sendMessage}>Send message</button>
+            {chatMessages.map((chatMessage) => {
+              return (
+                <ChatMessage 
+                  message={chatMessage.message}
+                  sender={chatMessage.sender}
+                  key={chatMessage.id}
+                />
+              );
+            })}
+          </>
+        );
+      }
+
       function App(){
         return (
           <>
             <ChatInput />
-            <ChatMessage 
-              message="Hello chatbot" 
-              sender="user" 
-            />
-            <ChatMessage 
-              message="Hello! How can I help you?" 
-              sender="robot"  
-            />
-            <ChatMessage 
-              message="Can you get me today's date?" 
-              sender="user" 
-            />
-            <ChatMessage 
-              message="Today is july?" 
-              sender="robot"
-            />
+            <ChatMessages />
           </>
         );
       }
