@@ -2,6 +2,34 @@
 <html>
   <head>
     <title>chatbot</title>
+    <style>
+      .app{
+        background-color: rgb(250, 250, 249);
+      }
+      .send-button {
+        background-color: rgb(101, 79, 240);
+        color: white;
+        padding: 6px 12px;
+        margin-left: 10px;
+        border: none;
+        font-size: 12px;
+        cursor: pointer;
+        border-radius: 30%;
+        transition: background-color 0.2s ease;
+      }
+      .send-button:hover {
+        background-color: rgb(144, 120, 171);
+      }
+      .chat-input{
+        background-color: rgb(250, 250, 249);
+        width: 400px;
+        height: 20px;
+        border-radius: 15%;
+        font-size: 12px;
+        border: 1px solid rgb(101, 79, 240);
+        outline: none;
+      }
+    </style>
   </head>
   <body>
     <div class="js-container"></div>
@@ -51,8 +79,8 @@
           <>
             {/* This input sends a message to the chatbot */}
             <input 
-              placeholder="Send a message to chatbot" 
-              size="30"
+              placeholder="Type and Send" 
+              size="60"
               onChange={saveInputText}
               value={inputText}
               onKeyDown={(e) => {
@@ -60,8 +88,9 @@
                   sendMessage();  
                 }
               }}
+              className="chat-input"
             />
-            <button onClick={sendMessage}>
+            <button class="send-button" onClick={sendMessage}>
               send
             </button>
           </>
@@ -125,7 +154,7 @@
         }]);
 
         return (
-          <>
+          <div class="app">
             {/*set props to ChatInput component*/}
             <ChatInput 
               chatMessages={chatMessages}
@@ -134,7 +163,7 @@
             <ChatMessages 
               chatMessages={chatMessages}
             />
-          </>
+          </div>
         );
       }
 
