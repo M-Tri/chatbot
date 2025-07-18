@@ -21,4 +21,6 @@ Currently, two official plugins are available:
 
   - npm install supersimpledev : Install packages into node_modules
   - Enter the chatbot-project :
-    - npm run dev : Look inside the scripts section of package.json, find a key called dev, and run whatever command is assigned to it.
+    - npm run dev : 
+    - Run inside chatbot-project directory.
+    - Command looks inside the scripts section of package.json, find a key called dev, and run whatever command is assigned to it.
