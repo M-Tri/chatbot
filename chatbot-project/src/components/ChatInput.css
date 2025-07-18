@@ -1,0 +1,58 @@
+:root {
+  --send-button-width: 60px;
+  --send-button-margin-left: 12px;
+}
+
+.chat-input-container {
+  display: flex;
+  margin-top: auto;
+  position: sticky;
+}
+
+.chat-input {
+  background-color: rgb(168, 167, 167);
+  max-width: 50%;
+  margin-left: calc(25% - var(--send-button-margin-left) - var(--send-button-width));
+  padding-left: 10px;
+  padding: 15px 15px;
+  border-radius: 10px;
+  font-size: 14px;
+  border: 1px solid rgb(11, 87, 208);
+  outline: none;
+  flex-grow: 1;
+  color: black;
+}
+
+.chat-input::placeholder {
+  color: rgb(77, 76, 76);
+}
+
+.send-button {
+  background-color:rgb(11, 87, 208);
+  color: white;
+  height: 40px;
+  width: 60px;
+  margin-left: 12px;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 30%;
+  transition: background-color 0.2s ease;
+  /* Make sure it doesn’t grow or shrink */
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.send-button:hover {
+  background-color: rgb(11, 160, 130);
+  color: black;
+  animation: wiggle 1.5s linear infinite;
+}
+
+@keyframes wiggle {
+  0%   { transform: rotate(0deg); }
+  25%  { transform: rotate(20deg); }
+  50%  { transform: rotate(0deg); }
+  75%  { transform: rotate(-20deg); }
+  100% { transform: rotate(0deg); }
+}
