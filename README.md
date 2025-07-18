@@ -2,9 +2,9 @@
 
 | **Issue**                    | Icon Logo is showing in Google Chrome but **not** in Safari                |
 | ---------------------------- | -------------------------------------------------------------------------- |
-| **Possible Solution:**        |                                                                            |
-| **Step 1**                   | Convert your SVG to PNG (use an online tool or ask ChatGPT to generate it) |
-| **Step 2**                   | Save the file as `favicon.png` inside your `/public` folder                |
+| **Possible Solution:**        |                                                                           |
+| **Step 1**                   | Convert your SVG to .ico                                                   |
+| **Step 2**                   | Save the file as `favicon.ico` inside your `/public` folder                |
 | **Step 3**                   | Update your `index.html` to include:                                       |
 
 
@@ -57,8 +57,11 @@ Here are some important React concepts applied in this project:
 | **Controlled Inputs** | Form elements (inputs, textareas, selects) whose values are controlled by React state. |
 | **Asynchronous State Updates** | React state updates are not immediate; they are batched and applied after the current code execution finishes. |
 
+
 -----
 # React + Vite
+The official Vite documentation is at:
+🔗 https://vite.dev
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
