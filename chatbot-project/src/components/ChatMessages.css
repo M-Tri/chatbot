@@ -1,0 +1,32 @@
+.chat-message-user {
+  display: flex;
+  justify-content: end;
+  align-items: start;
+}
+
+.chat-message-robot {
+  display: flex;
+  align-items: start;
+}
+
+.chat-message-text {
+  background-color:rgb(11, 170, 138);
+  color: black;
+  max-width: 50%;
+  padding: 15px 15px;
+  margin-right: 10px;
+  margin-left: 10px;
+  border-radius: 10px;
+}
+
+.chat-message-text:hover {
+  background-color: rgb(157, 158, 158);
+}
+
+.chat-messages-container {
+  overflow-y: auto;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
