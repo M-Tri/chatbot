@@ -21,22 +21,6 @@ function App(){
     message: "Today is July 9",
     sender: "robot",
     id: 'id4'
-  }, {
-    message: 'hello chatbot',
-    sender: 'user',
-    id: 'id1'
-  }, {
-    message: 'Hello! How can I help you?',
-    sender: 'robot',
-    id: 'id2'
-  }, {
-    message: "Can you get me todays' date",
-    sender: "user",
-    id: 'id3'
-  }, {
-    message: "Today is July 9",
-    sender: "robot",
-    id: 'id4'
   }]);
 
   return (
