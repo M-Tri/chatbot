@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Left half: Blue -->
+  <path d="M100,100 m-80,0 a80,80 0 0,1 80,-80 v160 a80,80 0 0,1 -80,-80 z" fill="rgb(11, 87, 208)" />
+  
+  <!-- Right half: Orange -->
+  <path d="M100,100 m0,-80 a80,80 0 0,1 0,160 v-160 z" fill="rgb(208, 140, 11)" />
+</svg>
