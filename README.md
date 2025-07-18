@@ -1,3 +1,12 @@
+## Current issues:
+| ✅ Task                       | 📝 Details                                                                 |
+| ---------------------------- | -------------------------------------------------------------------------- |
+| **Issue**                    | Logo is working in Google Chrome but **not** in Safari                     |
+| **Possible Solution Step 1** | Convert your SVG to PNG (use an online tool or ask ChatGPT to generate it) |
+| **Step 2**                   | Save the file as `favicon.png` inside your `/public` folder                |
+| **Step 3**                   | Update your `index.html` to include:                                       |
+
+
 -----
 
 # Chatbot Project
