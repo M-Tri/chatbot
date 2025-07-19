@@ -57,6 +57,13 @@ Here are some important React concepts applied in this project:
 | **Controlled Inputs** | Form elements (inputs, textareas, selects) whose values are controlled by React state. |
 | **Asynchronous State Updates** | React state updates are not immediate; they are batched and applied after the current code execution finishes. |
 
+| Tool    | What it is      | Use case                                     |
+| ------- | --------------- | -------------------------------------------- |
+| React   | UI Library      | Just the "view" layer                        |
+| Vite    | Build tool      | Fast development/build for frontend projects |
+| Next.js | React framework | Full-stack apps with SSR/SSG/Routing etc.    |
+
+
 
 -----
 # React + Vite
