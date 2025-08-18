@@ -2,8 +2,9 @@
 
 A full-stack application that uses a **React** frontend and an **Express.js** backend to interact with a local language model, **DeepSeek-R1:1.5b**, running through **Ollama**. This setup keeps your data private and eliminates API costs.
 
+----
 
-<img src="chatbot-project/frontend/public/readme-images/chat-sample.png" alt="A screenshot of the chat interface showing a sample conversation." width="600">
+<img src="chatbot-project/frontend/public/readme-images/chat-sample.png" alt="A screenshot of the chat interface showing a sample conversation." width="670">
 
 -----
 
