@@ -10,13 +10,14 @@
 }
 
 .chat-input {
-  background-color: rgb(168, 167, 167);
+  background-color:white;
   max-width: 50%;
   margin-left: calc(25% - var(--send-button-margin-left) - var(--send-button-width));
   padding-left: 10px;
   padding: 15px 15px;
   border-radius: 10px;
   font-size: 14px;
+  font-weight: 420; 
   border: 1px solid rgb(11, 87, 208);
   outline: none;
   flex-grow: 1;
@@ -35,12 +36,13 @@
   margin-left: 12px;
   border: none;
   font-size: 14px;
+  font-weight: 420; 
   cursor: pointer;
   border-radius: 30%;
   transition: background-color 0.2s ease;
-  /* Make sure it doesn’t grow or shrink */
   flex-grow: 0;
   flex-shrink: 0;
+  margin-top: 4px;
 }
 
 .send-button:hover {

@@ -1,68 +1,86 @@
-## Current issues:
+### Local AI Chat App 
 
-| **Issue**                    | Icon Logo is showing in Google Chrome but **not** in Safari                |
-| ---------------------------- | -------------------------------------------------------------------------- |
-| **Possible Solution:**        |                                                                            |
-| **Step 1**                   | Convert your SVG to PNG (use an online tool or ask ChatGPT to generate it) |
-| **Step 2**                   | Save the file as `favicon.png` inside your `/public` folder                |
-| **Step 3**                   | Update your `index.html` to include:                                       |
+A full-stack application that uses a **React** frontend and an **Express.js** backend to interact with a local language model, **DeepSeek-R1:1.5b**, running through **Ollama**. This setup keeps your data private and eliminates API costs.
 
+
+<img src="chatbot-project/frontend/public/readme-images/chat-sample.png" alt="A screenshot of the chat interface showing a sample conversation." width="600">
 
 -----
-
-# Chatbot Project
-
-This project is a React-based chatbot application.
-
------
-
-## Getting Started
-
-To set up and run the project locally, follow these steps:
 
 ### Prerequisites
 
-Ensure you have Node.js and npm installed on your system.
+Before you begin, make sure you have the following installed on your machine:
+
+  * **Node.js & npm**: [https://nodejs.org/](https://nodejs.org/)
+  * **Ollama**: Download and install Ollama for your operating system from the official website: [https://ollama.com/](https://ollama.com/).
+
+After installing Ollama, you must download the specific model used by this application. Open your terminal or command prompt and run the following command to pull the DeepSeek-R1:1.5b model:
+
+```bash
+ollama pull deepseek-r1:1.5b
+```
+
+This command downloads the model to your local machine, allowing the backend to access it.
+
+-----
 
 ### Installation
 
-1.  Navigate to the `chatbot-project` directory.
-2.  Install the necessary dependencies:
-  ```bash
-  npm install
-  ```
+1.  **Clone the repository**:
 
-### Running the Application
+    ```bash
+    git clone <repository_url>
+    cd <repository_name>
+    ```
 
-To start the development server, run the following command from within the `chatbot-project` directory:
+2.  **Install dependencies**: The project is split into a `client` (React) and a `server` (Express) directory.
 
-```bash
-npm run dev
-```
-
-This command executes the `dev` script defined in the `scripts` section of `package.json`, which typically starts a local development server and opens the application in your browser.
-
------
-
-## Key React Concepts learned:
-
-Here are some important React concepts applied in this project:
-
-| Concept             | Description                                                                  |
-| :------------------ | :--------------------------------------------------------------------------- |
-| **Fragments (`<>`)** | Allows you to group multiple elements without adding an extra `<div>` to the DOM. |
-| **Spread Operator (`...`)** | Used for easily copying or merging arrays and objects.                      |
-| **DOM Manipulation** | Avoid direct manual DOM manipulation; it can conflict with React's rendering. |
-| **Lifting State Up** | Centralize state in a common ancestor component and pass it down via props.  |
-| **Controlled Inputs** | Form elements (inputs, textareas, selects) whose values are controlled by React state. |
-| **Asynchronous State Updates** | React state updates are not immediate; they are batched and applied after the current code execution finishes. |
+  * Navigate to the client directory and install dependencies:
+    ```bash
+    cd client
+    npm install
+    ```
+  * Navigate back to the root directory and then into the server directory to install backend dependencies:
+    ```bash
+    cd ..
+    cd server
+    npm install
+    ```
 
 -----
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Running the App
 
-Currently, two official plugins are available:
+The application requires two separate processes to run simultaneously: one for the backend and one for the frontend.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1.  **Start the Ollama server**: Before running the app, ensure the Ollama server is running in the background. If you're on a headless Linux server, you'll need to run this command. If you're using the Ollama desktop app, it should be running automatically.
+
+    ```bash
+    ollama serve
+    ```
+
+    This command starts the local API server that your Express backend will communicate with. It runs on `http://localhost:11434`.
+
+2.  **Start the backend (Express.js)**:
+
+  * Open a new terminal window.
+  * Navigate to the `server` directory.
+  * Run the server:
+    ```bash
+    npm start
+    ```
+
+The server will run on `http://localhost:3001` (or the port specified in your configuration).
+
+3.  **Start the frontend (React)**:
+
+  * Open another new terminal window.
+  * Navigate to the `client` directory.
+  * Run the frontend:
+    ```bash
+    npm start
+    ```
+
+    This will open the application in your web browser at `http://localhost:3000`. If it doesn't open automatically, navigate there manually.
+
+You can now interact with the local AI model through the web interface.
