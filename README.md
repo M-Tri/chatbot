@@ -38,13 +38,13 @@ This command downloads the model to your local machine, allowing the backend to 
 
   * Navigate to the client directory and install dependencies:
     ```bash
-    cd client
+    cd frontend
     npm install
     ```
   * Navigate back to the root directory and then into the server directory to install backend dependencies:
     ```bash
     cd ..
-    cd server
+    cd backend
     npm install
     ```
 
@@ -65,7 +65,7 @@ The application requires two separate processes to run simultaneously: one for t
 2.  **Start the backend (Express.js)**:
 
   * Open a new terminal window.
-  * Navigate to the `server` directory.
+  * Navigate to the `backend` directory.
   * Run the server:
     ```bash
     npm start
@@ -76,7 +76,7 @@ The server will run on `http://localhost:3001` (or the port specified in your co
 3.  **Start the frontend (React)**:
 
   * Open another new terminal window.
-  * Navigate to the `client` directory.
+  * Navigate to the `frontend` directory.
   * Run the frontend:
     ```bash
     npm start
