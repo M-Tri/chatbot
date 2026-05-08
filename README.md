@@ -1,87 +1,159 @@
-### Local AI Chat App 
+# Local AI Chat App
 
-A full-stack application that uses a **React** frontend and an **Express.js** backend to interact with a local language model, **DeepSeek-R1:1.5b**, running through **Ollama**. This setup keeps your data private and eliminates API costs.
+A full-stack local chatbot that uses a React frontend, an Express backend, and an Ollama model running on your own computer. The app sends chat prompts to your local Ollama server, so no paid API key is required.
 
-----
+## Screenshots
 
-<img src="chatbot-project/frontend/public/readme-images/chat-sample.png" alt="A screenshot of the chat interface showing a sample conversation." width="670">
+Demo:
 
------
+<img src="chatbot-project/frontend/public/readme-images/app-demo.gif" alt="Demo of the local AI chat app" width="720">
 
-### Prerequisites
+## Tech Stack
 
-Before you begin, make sure you have the following installed on your machine:
+- React 18
+- Vite
+- Express 5
+- Ollama
+- DeepSeek-R1 1.5B by default
 
-  * **Node.js & npm**: [https://nodejs.org/](https://nodejs.org/)
-  * **Ollama**: Download and install Ollama for your operating system from the official website: [https://ollama.com/](https://ollama.com/).
+## Features
 
-After installing Ollama, you must download the specific model used by this application. Open your terminal or command prompt and run the following command to pull the DeepSeek-R1:1.5b model:
+- Local chat UI for Ollama models
+- Configurable backend port, Ollama URL, default model, and temperature
+- Configurable frontend API URL
+- Model selector
+- Temperature slider
+- Optional system prompt box
+- Saved chat history in browser local storage
+- Reset chat button
+- Loading animation and visible error messages
+
+## Requirements
+
+- Node.js and npm
+- Ollama installed and running
+- The required default model:
 
 ```bash
 ollama pull deepseek-r1:1.5b
 ```
 
-This command downloads the model to your local machine, allowing the backend to access it.
+If you choose another model in the UI, pull it first. For example:
 
------
+```bash
+ollama pull llama3.2:3b
+```
 
-### Installation
+## Setup
 
-1.  **Clone the repository**:
+Install backend dependencies:
 
-    ```bash
-    git clone <repository_url>
-    cd <repository_name>
-    ```
+```bash
+cd chatbot-project/backend
+npm install
+```
 
-2.  **Install dependencies**: The project is split into a `client` (React) and a `server` (Express) directory.
+Install frontend dependencies:
 
-  * Navigate to the client directory and install dependencies:
-    ```bash
-    cd frontend
-    npm install
-    ```
-  * Navigate back to the root directory and then into the server directory to install backend dependencies:
-    ```bash
-    cd ..
-    cd backend
-    npm install
-    ```
+```bash
+cd ../frontend
+npm install
+```
 
------
+Create backend environment config:
 
-### Running the App
+```bash
+cd ../backend
+cp .env.example .env
+```
 
-The application requires two separate processes to run simultaneously: one for the backend and one for the frontend.
+Backend `.env` values:
 
-1.  **Start the Ollama server**: Before running the app, ensure the Ollama server is running in the background. If you're on a headless Linux server, you'll need to run this command. If you're using the Ollama desktop app, it should be running automatically.
+```bash
+PORT=3001
+OLLAMA_URL=http://localhost:11434
+OLLAMA_MODEL=deepseek-r1:1.5b
+OLLAMA_TEMPERATURE=0.7
+```
 
-    ```bash
-    ollama serve
-    ```
+Create frontend environment config:
 
-    This command starts the local API server that your Express backend will communicate with. It runs on `http://localhost:11434`.
+```bash
+cd ../frontend
+cp .env.example .env
+```
 
-2.  **Start the backend (Express.js)**:
+Frontend `.env` values:
 
-  * Open a new terminal window.
-  * Navigate to the `backend` directory.
-  * Run the server:
-    ```bash
-    npm start
-    ```
+```bash
+VITE_API_URL=http://localhost:3001
+```
 
-The server will run on `http://localhost:3001` (or the port specified in your configuration).
+## Run The App
 
-3.  **Start the frontend (React)**:
+Start Ollama:
 
-  * Open another new terminal window.
-  * Navigate to the `frontend` directory.
-  * Run the frontend:
-    ```bash
-    npm start
-    ```
+```bash
+ollama serve
+```
 
-    This will open the application in your web browser at `http://localhost:3000`. If it doesn't open automatically, navigate there manually.
+Start the backend in another terminal:
 
-You can now interact with the local AI model through the web interface.
+```bash
+cd chatbot-project/backend
+npm start
+```
+
+Start the frontend in another terminal:
+
+```bash
+cd chatbot-project/frontend
+npm run dev
+```
+
+Open the Vite URL shown in the terminal, usually:
+
+```text
+http://localhost:5173
+```
+
+## Project Structure
+
+```text
+chatbot-project/
+  backend/
+    config.js
+    server.js
+    routes/
+      chatRoutes.js
+    services/
+      ollamaService.js
+    .env.example
+    package.json
+  frontend/
+    src/
+      App.jsx
+      components/
+    .env.example
+    package.json
+```
+
+## Screenshot Prep
+
+The README screenshots were renamed from timestamp screenshots and resized with macOS `sips`.
+
+I used a fixed width of `1200px` and kept the original aspect ratio, so the images are consistent in the repo without being stretched:
+
+```bash
+```
+
+The README displays the demo GIF at `width="720"` so it stays readable without taking over the page.
+
+## Future Improvements
+
+- Stream responses token by token.
+- Load installed Ollama models dynamically.
+- Add chat sessions and export/import.
+- Add markdown rendering for model replies.
+- Add conversation memory with summarization.
+- Add backend tests and frontend component tests.
