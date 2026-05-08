@@ -115,6 +115,7 @@ function App() {
         model={model}
         temperature={temperature}
         systemPrompt={systemPrompt}
+        chatMessages={chatMessages}
         setChatMessages={setChatMessages}
         isLoading={isLoading}
         setIsLoading={setIsLoading}
