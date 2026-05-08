@@ -4,3 +4,14 @@ body {
   margin-top: 0px;
   margin-bottom: 0px;
 }
+
+* {
+  box-sizing: border-box;
+}
+
+button,
+textarea,
+select,
+input {
+  font: inherit;
+}

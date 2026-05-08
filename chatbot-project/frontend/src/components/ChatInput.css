@@ -1,26 +1,28 @@
 :root {
-  --send-button-width: 60px;
+  --send-button-width: 70px;
   --send-button-margin-left: 12px;
 }
 
 .chat-input-container {
   display: flex;
+  justify-content: center;
   margin-top: auto;
   position: sticky;
 }
 
 .chat-input {
-  background-color:white;
+  background-color: white;
+  width: min(520px, calc(100% - var(--send-button-width) - var(--send-button-margin-left)));
   max-width: 50%;
-  margin-left: calc(25% - var(--send-button-margin-left) - var(--send-button-width));
+  margin-left: 0;
   padding-left: 10px;
   padding: 15px 15px;
   border-radius: 10px;
   font-size: 14px;
-  font-weight: 420; 
+  font-weight: 420;
   border: 1px solid rgb(11, 87, 208);
   outline: none;
-  flex-grow: 1;
+  flex-grow: 0;
   color: black;
 }
 
@@ -29,32 +31,46 @@
 }
 
 .send-button {
-  background-color:rgb(11, 87, 208);
+  background: rgb(11, 87, 208);
   color: white;
-  height: 40px;
-  width: 60px;
-  margin-left: 12px;
-  border: none;
-  font-size: 14px;
-  font-weight: 420; 
+  height: 34px;
+  width: var(--send-button-width);
+  margin-left: var(--send-button-margin-left);
+  border: 2px solid rgb(245, 166, 35);
+  font-size: 12px;
+  font-weight: 420;
   cursor: pointer;
   border-radius: 30%;
-  transition: background-color 0.2s ease;
+  box-shadow: 0 0 0 2px rgba(245, 166, 35, 0.22);
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
   flex-grow: 0;
   flex-shrink: 0;
   margin-top: 4px;
 }
 
-.send-button:hover {
-  background-color: rgb(11, 160, 130);
+.send-button:hover:not(:disabled) {
   color: black;
+  background-color: rgb(11, 160, 130);
+  transform: translateY(-1px);
   animation: wiggle 1.5s linear infinite;
 }
 
+.send-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
 @keyframes wiggle {
-  0%   { transform: rotate(0deg); }
-  25%  { transform: rotate(20deg); }
-  50%  { transform: rotate(0deg); }
-  75%  { transform: rotate(-20deg); }
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(20deg); }
+  50% { transform: rotate(0deg); }
+  75% { transform: rotate(-20deg); }
   100% { transform: rotate(0deg); }
+}
+
+@media (max-width: 620px) {
+  .chat-input {
+    max-width: none;
+    margin-left: 0;
+  }
 }

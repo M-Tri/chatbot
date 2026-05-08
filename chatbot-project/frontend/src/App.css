@@ -1,14 +1,153 @@
-.app-container{
+.app-container {
   max-width: 80%;
   width: 100%;
-  font-weight: 420; 
+  font-weight: 420;
   margin-left: auto;
   margin-right: auto;
   margin-top: 40px;
-
   display: flex;
   flex-direction: column;
   gap: 30px;
-  /* Relative to the hight of the browser */
   height: 85vh;
+}
+
+.app-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.reset-button,
+.settings-button,
+.close-settings-button {
+  background: rgb(11, 87, 208);
+  color: white;
+  height: 34px;
+  min-width: 70px;
+  padding: 0 10px;
+  border: 2px solid rgb(245, 166, 35);
+  font-size: 12px;
+  font-weight: 420;
+  cursor: pointer;
+  border-radius: 30%;
+  box-shadow: 0 0 0 2px rgba(245, 166, 35, 0.22);
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.reset-button:hover:not(:disabled),
+.settings-button:hover,
+.close-settings-button:hover {
+  color: black;
+  background-color: rgb(11, 160, 130);
+  transform: translateY(-1px);
+}
+
+.reset-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.settings-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 8;
+  pointer-events: none;
+  background: rgba(0, 0, 0, 0);
+  transition: background 0.2s ease;
+}
+
+.settings-backdrop-open {
+  pointer-events: auto;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.settings-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 9;
+  width: min(360px, 92vw);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 24px;
+  background-color: rgb(18, 18, 18);
+  border-left: 1px solid rgb(11, 87, 208);
+  box-shadow: -16px 0 36px rgba(0, 0, 0, 0.45);
+  transform: translateX(100%);
+  transition: transform 0.22s ease;
+}
+
+.settings-panel-open {
+  transform: translateX(0);
+}
+
+.settings-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.settings-header h2 {
+  margin: 0;
+  color: white;
+  font-size: 20px;
+  font-weight: 420;
+}
+
+.settings-panel label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: white;
+  font-size: 14px;
+  font-weight: 420;
+}
+
+.settings-panel label span {
+  color: rgb(11, 170, 138);
+}
+
+.settings-panel select,
+.settings-panel textarea {
+  width: 100%;
+  border: 1px solid rgb(11, 87, 208);
+  border-radius: 10px;
+  outline: none;
+  color: black;
+  background-color: white;
+}
+
+.settings-panel select {
+  height: 42px;
+  padding: 0 12px;
+}
+
+.settings-panel textarea {
+  min-height: 90px;
+  resize: vertical;
+  padding: 12px;
+}
+
+.settings-panel input[type="range"] {
+  accent-color: rgb(11, 170, 138);
+}
+
+.error-banner {
+  padding: 12px 14px;
+  border: 1px solid rgb(11, 87, 208);
+  border-radius: 10px;
+  color: black;
+  background-color: rgb(11, 170, 138);
+  font-size: 14px;
+}
+
+@media (max-width: 760px) {
+  .app-container {
+    max-width: calc(100% - 20px);
+    margin-top: 20px;
+    height: 90vh;
+  }
 }

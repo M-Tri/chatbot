@@ -9,18 +9,26 @@
   align-items: start;
 }
 
-.chat-message-text {
-  background-color:rgb(11, 170, 138);
+.chat-message-text,
+.typing-indicator {
+  background-color: rgb(11, 170, 138);
   color: black;
   max-width: 50%;
   padding: 15px 15px;
   margin-right: 10px;
   margin-left: 10px;
   border-radius: 10px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
 }
 
 .chat-message-text:hover {
   background-color: rgb(157, 158, 158);
+}
+
+.error-bubble {
+  background-color: rgb(11, 170, 138);
+  color: black;
 }
 
 .chat-messages-container {
@@ -29,4 +37,81 @@
   display: flex;
   flex-direction: column;
   gap: 30px;
+}
+
+.empty-state {
+  width: min(520px, 100%);
+  margin: auto;
+  text-align: center;
+}
+
+.empty-state h2 {
+  margin: 0;
+  display: inline-flex;
+  font-size: 32px;
+  font-weight: 420;
+  animation: spin-empty-mark 2.4s linear infinite;
+}
+
+.empty-blue {
+  color: rgb(11, 87, 208);
+}
+
+.empty-orange {
+  color: rgb(245, 166, 35);
+  margin-left: 10px;
+}
+
+@keyframes spin-empty-mark {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.typing-indicator {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  width: fit-content;
+}
+
+.typing-indicator span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: black;
+  animation: typing-pulse 1s ease-in-out infinite;
+}
+
+.typing-indicator span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.typing-indicator span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes typing-pulse {
+  0%,
+  80%,
+  100% {
+    opacity: 0.35;
+    transform: translateY(0);
+  }
+
+  40% {
+    opacity: 1;
+    transform: translateY(-3px);
+  }
+}
+
+@media (max-width: 620px) {
+  .chat-message-text,
+  .typing-indicator {
+    max-width: 75%;
+  }
 }
