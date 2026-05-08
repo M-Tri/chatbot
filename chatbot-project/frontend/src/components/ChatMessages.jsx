@@ -14,8 +14,8 @@ function ChatMessages({ chatMessages, isLoading }) {
       {chatMessages.length === 0 && (
         <div className="empty-state">
           <h2>
-            <span className="empty-blue">:)</span>
-            <span className="empty-orange">(:</span>
+            <span className="empty-blue">()-</span>
+            <span className="empty-orange">-()</span>
           </h2>
         </div>
       )}
