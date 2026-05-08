@@ -2,12 +2,16 @@ import RobotProfileImage from '../assets/robotCircle.svg';
 import UserProfileImage from '../assets/userCircle.svg';
 import './ChatMessage.css';
 
-export function ChatMessage({ message, sender }) {
+export function ChatMessage({ message, sender, isError }) {
+  const isUser = sender === 'user';
+
   return (
-    <div className={sender === 'user' ? 'chat-message-user' : 'chat-message-robot'}>
-      {sender === 'robot' && <img src={RobotProfileImage} className="chat-img-profile-robot" />}
-      <div className="chat-message-text">{message}</div>
-      {sender === 'user' && <img src={UserProfileImage} className="chat-img-profile-user" />}
+    <div className={isUser ? 'chat-message-user' : 'chat-message-robot'}>
+      {!isUser && <img src={RobotProfileImage} className="chat-img-profile" alt="" />}
+      <div className={`chat-message-text ${isUser ? 'user-bubble' : 'robot-bubble'} ${isError ? 'error-bubble' : ''}`}>
+        {message}
+      </div>
+      {isUser && <img src={UserProfileImage} className="chat-img-profile" alt="" />}
     </div>
   );
 }

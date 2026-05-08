@@ -1,57 +1,80 @@
-import { useState, useRef } from 'react';
+import { useRef, useState } from 'react';
 import './ChatInput.css';
 
-export function ChatInput({ chatMessages, setChatMessages, isLoading, setIsLoading }) {
+export function ChatInput({
+  apiUrl,
+  model,
+  temperature,
+  systemPrompt,
+  setChatMessages,
+  isLoading,
+  setIsLoading,
+  setError
+}) {
   const [inputText, setInputText] = useState('');
   const textareaRef = useRef(null);
 
   function saveInputText(e) {
     setInputText(e.target.value);
 
-    // auto-resize textarea
-    const ta = textareaRef.current;
-    if (ta) {
-      ta.style.height = 'auto';
-      ta.style.height = ta.scrollHeight + 'px';
+    const textarea = textareaRef.current;
+    if (textarea) {
+      textarea.style.height = 'auto';
+      textarea.style.height = `${textarea.scrollHeight}px`;
     }
   }
 
   async function sendMessage() {
-    if (!inputText.trim()) return;
+    if (!inputText.trim() || isLoading) return;
 
     const newMessage = {
-      message: inputText,
+      message: inputText.trim(),
       sender: 'user',
-      id: crypto.randomUUID(),
+      id: crypto.randomUUID()
     };
-    setChatMessages(prev => [...prev, newMessage]);
+
+    setChatMessages((prev) => [...prev, newMessage]);
     setInputText('');
+    setError('');
     if (textareaRef.current) textareaRef.current.style.height = 'auto';
 
     setIsLoading(true);
 
     try {
-      const res = await fetch('http://localhost:3001/chat', {
+      const res = await fetch(`${apiUrl}/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: newMessage.message })
+        body: JSON.stringify({
+          message: newMessage.message,
+          model,
+          temperature,
+          systemPrompt
+        })
       });
 
       const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'The backend could not complete the request.');
 
-      const botMessage = {
-        message: data.reply ?? 'No reply from model.',
-        sender: 'robot',
-        id: crypto.randomUUID(),
-      };
-      setChatMessages(prev => [...prev, botMessage]);
+      setChatMessages((prev) => [
+        ...prev,
+        {
+          message: data.reply || 'No reply from model.',
+          sender: 'robot',
+          id: crypto.randomUUID()
+        }
+      ]);
     } catch (err) {
       console.error(err);
-      setChatMessages(prev => [...prev, {
-        message: 'Backend error. Check server & Ollama.',
-        sender: 'robot',
-        id: crypto.randomUUID(),
-      }]);
+      setError(err.message || 'Backend error. Check the server and Ollama.');
+      setChatMessages((prev) => [
+        ...prev,
+        {
+          message: 'I could not reach the model. Check that the backend and Ollama are running.',
+          sender: 'robot',
+          id: crypto.randomUUID(),
+          isError: true
+        }
+      ]);
     } finally {
       setIsLoading(false);
     }
@@ -61,10 +84,10 @@ export function ChatInput({ chatMessages, setChatMessages, isLoading, setIsLoadi
     <div className="chat-input-container">
       <textarea
         ref={textareaRef}
-        placeholder="Type a message..."
+        placeholder="Ask the local model anything..."
         onChange={saveInputText}
         value={inputText}
-        onKeyDown={e => {
+        onKeyDown={(e) => {
           if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault();
             sendMessage();
@@ -73,8 +96,8 @@ export function ChatInput({ chatMessages, setChatMessages, isLoading, setIsLoadi
         className="chat-input"
         rows={1}
       />
-      <button className="send-button" onClick={sendMessage} disabled={isLoading}>
-        send
+      <button className="send-button" onClick={sendMessage} disabled={isLoading || !inputText.trim()}>
+        {isLoading ? 'Thinking' : 'Send'}
       </button>
     </div>
   );
