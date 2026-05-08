@@ -24,6 +24,8 @@ Demo:
 - Model selector
 - Temperature slider
 - Optional system prompt box
+- Streaming responses from Ollama's chat API
+- Real system prompts sent as chat messages
 - Saved chat history in browser local storage
 - Reset chat button
 - Loading animation and visible error messages
@@ -140,18 +142,10 @@ chatbot-project/
 
 ## Screenshot Prep
 
-The README screenshots were renamed from timestamp screenshots and resized with macOS `sips`.
-
-I used a fixed width of `1200px` and kept the original aspect ratio, so the images are consistent in the repo without being stretched:
-
-```bash
-```
-
 The README displays the demo GIF at `width="720"` so it stays readable without taking over the page.
 
 ## Future Improvements
 
-- Stream responses token by token.
 - Load installed Ollama models dynamically.
 - Add chat sessions and export/import.
 - Add markdown rendering for model replies.
